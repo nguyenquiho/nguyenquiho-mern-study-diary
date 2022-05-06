@@ -1,0 +1,57 @@
+GET http://localhost:5000/api/auth/test
+
+###
+
+POST http://localhost:5000/api/auth/register
+Content-Type: application/json
+
+{
+    "username" : "nguyen nam",
+    "password" : "123456"
+}
+
+###
+
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username" : "nguyenquiho",
+    "password" : "123456"
+}
+
+###
+// List posts
+GET http://localhost:5000/api/posts
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mjc0ZTIzNWQyMDRkYzRmMzAzYmIzOTEiLCJpYXQiOjE2NTE4MjcyNzF9.Zh-uAlkfyYBT4eLkYi-fCl-4_Amsx9YgL4pdcSN2rJ0
+
+###
+// Create Post
+POST http://localhost:5000/api/posts
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2Mjc0ZTIzNWQyMDRkYzRmMzAzYmIzOTEiLCJpYXQiOjE2NTE4MjcyNzF9.Zh-uAlkfyYBT4eLkYi-fCl-4_Amsx9YgL4pdcSN2rJ0
+
+{
+    "title" : "Hoc PHP",
+    "description" : "Khoa hoc PHP",
+    "url" : "youtube.com",
+    "status" : "Learning"
+}
+
+###
+// Update Post
+PUT http://localhost:5000/api/posts/6273a712641aafa2a7ae3b48
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjczNGU4NTY0Y2FkYmUxOTEzNmQ2NjciLCJpYXQiOjE2NTE4MzEyODh9.D74dmMk84oxrbQme6sY143guVHWEDZzSH_Cc2nKe1tQ
+
+{
+    "title" : "Khoa hoc Nodejs updated",
+    "description" : "Khoa hoc Nodejs",
+    "url" : "http://youtube.com",
+    "status" : "Learning"
+}
+
+###
+// Delete Post
+DELETE http://localhost:5000/api/posts/6273a712641aafa2a7ae3b48
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2MjczNGU4NTY0Y2FkYmUxOTEzNmQ2NjciLCJpYXQiOjE2NTE4MzEyODh9.D74dmMk84oxrbQme6sY143guVHWEDZzSH_Cc2nKe1tQ
