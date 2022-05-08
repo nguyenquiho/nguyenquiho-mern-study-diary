@@ -1,0 +1,21 @@
+react-router-dom V5 vs V6
+
+Switch -> Routes
+Redirect -> Navigate
+
+// v5
+<Route path=":userId" component={Profile} />
+<Route
+  path=":userId"
+  render={routeProps => (
+    <Profile routeProps={routeProps} animate={true} />
+  )}
+/>
+
+// v6
+<Route path=":userId" element={<Profile />} />
+<Route path=":userId" element={<Profile animate={true} />} />
+
+##############################
+
+Bootstrap Theme https://bootswatch.com/
