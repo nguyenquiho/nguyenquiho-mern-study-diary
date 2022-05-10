@@ -17,30 +17,60 @@ const AuthContextProvider = ({ children }) => {
   });
 
   // Authenticate user
-  const loadUser = async () => {
-    if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
-      setAuthToken(localStorage[LOCAL_STORAGE_TOKEN_NAME]);
-    }
+  // const loadUser = async () => {
+  //   if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
+  //     setAuthToken(localStorage[LOCAL_STORAGE_TOKEN_NAME]);
+  //   }
 
-    try {
-      const response = await axios.get(`${apiUrl}/auth`);
-      if (response.data.success) {
+  //   try {
+  //     const response = await axios.get(`${apiUrl}/auth`);
+  //     if (response.data.success) {
+  //       dispatch({
+  //         type: "SET_AUTH",
+  //         payload: { isAuthenticated: true, user: response.data.user },
+  //       });
+  //     }
+  //   } catch (error) {
+  //     localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+  //     setAuthToken(null);
+  //     dispatch({
+  //       type: "SET_AUTH",
+  //       payload: { isAuthenticated: false, user: null },
+  //     });
+  //   }
+  // };
+
+  useEffect(() => {
+    // declare the data fetching function
+    const loadUser = async () => {
+      if (localStorage[LOCAL_STORAGE_TOKEN_NAME]) {
+        setAuthToken(localStorage[LOCAL_STORAGE_TOKEN_NAME]);
+      }
+  
+      try {
+        const response = await axios.get(`${apiUrl}/auth`);
+        console.log(response)
+        if (response.data.success) {
+          dispatch({
+            type: "SET_AUTH",
+            payload: { isAuthenticated: true, user: response.data.user },
+          });
+        }
+      } catch (error) {
+        localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
+        setAuthToken(null);
         dispatch({
           type: "SET_AUTH",
-          payload: { isAuthenticated: true, user: response.data.user },
+          payload: { isAuthenticated: false, user: null },
         });
       }
-    } catch (error) {
-      localStorage.removeItem(LOCAL_STORAGE_TOKEN_NAME);
-      setAuthToken(null);
-      dispatch({
-        type: "SET_AUTH",
-        payload: { isAuthenticated: false, user: null },
-      });
     }
-  };
-
-  useEffect(() => loadUser(), []);
+  
+    // call the function
+    loadUser()
+      // make sure to catch any error
+      .catch(console.error);
+  }, []);
 
   // Login
   const loginUser = async (userForm) => {

@@ -22,7 +22,7 @@ function App() {
           <Route
             exact
             path="/dashboard"
-            element={Dashboard}
+            element={<Dashboard />}
           />
         </Routes>
       </Router>

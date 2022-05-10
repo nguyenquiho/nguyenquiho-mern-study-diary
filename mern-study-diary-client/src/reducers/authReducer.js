@@ -10,10 +10,10 @@ export const authReducer = (state, action) => {
         ...state,
         authLoading: false,
         isAuthenticated,
-        user
+        user,
       };
-    
+
     default:
-        return state
+      return state;
   }
 };
